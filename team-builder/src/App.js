@@ -1,12 +1,7 @@
 //DATA section
 import './App.css';
 import React, {useState} from 'react';
-import axios from 'axios'; //useful the fake grepping below
-
-//import Agent from './Agent';
-//import AgentForm from './AgentForm';
-//import Data from '../data/Data';
-//we will create dummy data of different agents
+import AgentForm from './AgentForm';
 
 //'shape' of the data -- inputs
 
@@ -20,20 +15,37 @@ const initFormVals = {
   rank:''
 }
 
-//LOGIC AKA RENDER SECTION
+//LOGIC / FUNCTION SECTION
 function App() {
-  const [formValues,setFormValues] = useState(initFormVals);
+  const [values,setValues] = useState(initFormVals);
+  const [members,setMembers] = useState([]);
+
+ const onSubmit = () => {
+    setMembers({values, ...members});
+  }
+
+ const onChange = (name,value) =>{
+    setValues({...values, [name]:value});
+  }
 
   return (
     <div className="App">
-      <header className='App-header'>
-    <h1>Agents Form App. If you do not have authorization to access this site, TERMINATE ACCESS NOW.</h1>
-    {/* <AgentForm 
-    values={formValues}
-    update={updateForm}
-    submit={submitForm}
-    /> */}
-      </header>
+     
+    <h1>If you do not have authorization to access this site, TERMINATE ACCESS NOW.</h1>
+    <AgentForm values={values}
+    change={onChange}
+    submit={onSubmit}
+    />
+    {members.map((member,idx) => {
+      return (
+        <div key={idx}>
+          <h2>NAME: {member.name}</h2>
+          <p>CONTACT THEM VIA: {member.contact}</p>
+          <p>DIVISION: {member.division}</p>
+          <p>THEIR RANK/CLEARANCE LEVEL: {member.rank}</p>
+        </div>
+      )
+    })}
     </div>
   );
 }
