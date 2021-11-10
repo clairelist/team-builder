@@ -21,7 +21,7 @@ function App() {
   const [members,setMembers] = useState([]);
 
  const onSubmit = () => {
-    setMembers({values, ...members});
+    setMembers([values, ...members]);
   }
 
  const onChange = (name,value) =>{
@@ -39,7 +39,7 @@ function App() {
     {members.map((member,idx) => {
       return (
         <div key={idx}>
-          <h2>NAME: {member.name}</h2>
+          <h2>NAME: {member.firstname}</h2>
           <p>CONTACT THEM VIA: {member.contact}</p>
           <p>DIVISION: {member.division}</p>
           <p>THEIR RANK/CLEARANCE LEVEL: {member.rank}</p>
