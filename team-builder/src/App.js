@@ -22,6 +22,7 @@ function App() {
 
  const onSubmit = () => {
     setMembers([values, ...members]);
+    setValues(initFormVals);
   }
 
  const onChange = (name,value) =>{
